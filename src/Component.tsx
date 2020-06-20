@@ -8,7 +8,6 @@ import {
   RefAttributes,
   forwardRef,
 } from "react";
-import { usePx } from "./use-px";
 
 type InputProps =
   | (React.InputHTMLAttributes<HTMLInputElement> & { "data-testid": string })
@@ -23,16 +22,6 @@ const InnerInput: FC<{
 }> = ({ inputRef, inputProps, checked }) => {
   return (
     <input
-      sx={{
-        visibility: "hidden",
-        position: "absolute",
-        height: 0,
-        width: 0,
-        opacity: 0,
-        overflow: "hidden",
-        bg: "transparent",
-        zIndex: -1,
-      }}
       onChange={() => {}}
       checked={checked}
       ref={inputRef}
@@ -46,29 +35,19 @@ const InnerText: FC<{
   checked: boolean;
   textRef?: Ref<HTMLDivElement> | undefined;
   textProps: TextProps;
-  height: string | number;
-}> = ({ textRef, textProps, checked, height }) => {
-  console.log({ height, checked });
+}> = ({ textRef, textProps, checked }) => {
   return (
     <Box
       ref={textRef}
       sx={{
-        height,
         bg: "dodgerblue",
         "input:checked + &": {
-          bg: "tomato",
+          bg: "primary",
         },
       }}
       {...textProps}
     >
-      Foo: {checked ? "checked" : "unchecked"}
-      <span
-        sx={{
-          bg: "green",
-        }}
-      >
-        foo
-      </span>
+      {checked ? "Checked" : "Unchecked"}
     </Box>
   );
 };
@@ -89,30 +68,15 @@ export const Component: ForwardRef<
     textRef?: Ref<HTMLDivElement>;
     textProps?: TextProps;
   }
-> = forwardRef(
-  ({ checked, height = 1, inputRef, inputProps, textRef, textProps }, ref) => {
-    const h: any = usePx(height);
-
-    return (
-      <Box
-        ref={ref}
-        as="label"
-        sx={{
-          bg: "black",
-        }}
-      >
-        <InnerInput
-          checked={checked}
-          inputRef={inputRef}
-          inputProps={inputProps}
-        />
-        <InnerText
-          height={h}
-          checked={checked}
-          textRef={textRef}
-          textProps={textProps}
-        />
-      </Box>
-    );
-  }
-);
+> = forwardRef(({ checked, inputRef, inputProps, textRef, textProps }, ref) => {
+  return (
+    <Box ref={ref} as="label" sx={{ bg: "secondary" }}>
+      <InnerInput
+        checked={checked}
+        inputRef={inputRef}
+        inputProps={inputProps}
+      />
+      <InnerText checked={checked} textRef={textRef} textProps={textProps} />
+    </Box>
+  );
+});
