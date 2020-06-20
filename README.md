@@ -3,7 +3,7 @@
 In browser everything is ok.
 
 In the test I'm expecting to have background color from theme -> colors -> secondary,
-while I have `white`.
+while it seems to be ignored.
 
 ```js
 expect(container).toHaveStyle(`background-color: ${theme.colors?.secondary}`);
