@@ -42,7 +42,7 @@ const InnerText: FC<{
       sx={{
         bg: "dodgerblue",
         "input:checked + &": {
-          bg: "primary",
+          bg: "primary", // NOTE: change to "tomato" to pass the test
         },
       }}
       {...textProps}
@@ -70,7 +70,7 @@ export const Component: ForwardRef<
   }
 > = forwardRef(({ checked, inputRef, inputProps, textRef, textProps }, ref) => {
   return (
-    <Box ref={ref} as="label" sx={{ bg: "secondary" }}>
+    <Box ref={ref} as="label">
       <InnerInput
         checked={checked}
         inputRef={inputRef}

@@ -8,12 +8,11 @@ const theme: Theme = {
     background: "white",
     text: "black",
     primary: "tomato",
-    secondary: "gold",
   },
 };
 
 describe("describe", () => {
-  it.only("checked background should be tomato", (done) => {
+  it.only("checked background should be tomato.", (done) => {
     const dataTestId = "test-text";
     const dataTestInputId = "test-input";
     const dataTestContainerId = "test-container";
@@ -37,14 +36,12 @@ describe("describe", () => {
     const getComputedCSS = (container.ownerDocument.defaultView as Window)
       .getComputedStyle;
     const css = getComputedCSS(container);
-    console.log({ css });
-
-    expect(container).toHaveStyle(
-      `background-color: ${theme.colors?.secondary}`
-    );
+    // console.log({ css });
 
     console.log("dudee");
     const text = screen.getByTestId(dataTestId);
     expect(text).toHaveStyle(`background-color: ${theme.colors?.primary}`);
+
+    return done();
   });
 });

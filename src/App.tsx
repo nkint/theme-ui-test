@@ -10,7 +10,6 @@ function App() {
           background: "white",
           text: "black",
           primary: "tomato",
-          secondary: "gold",
         },
       }}
     >
