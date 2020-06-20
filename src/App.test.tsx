@@ -34,9 +34,9 @@ describe("describe", () => {
 
     const container = screen.getByTestId(dataTestInputId);
 
-    const getCSS = (container.ownerDocument.defaultView as Window)
+    const getComputedCSS = (container.ownerDocument.defaultView as Window)
       .getComputedStyle;
-    const css = getCSS(container);
+    const css = getComputedCSS(container);
     console.log({ css });
 
     expect(container).toHaveStyle(
